@@ -17,7 +17,7 @@
         </thead>
         <tbody>
             {foreach $user in $users}
-                <tr data-user-id="{$user.id}">
+                <tr data-user-id="{$user.id}"  data-user-status="{$user.status}">
                     <td>{$user.name}</td>
                     <td>{$user.email}</td>
                     <td>
@@ -25,7 +25,7 @@
                         {if $user.status == 'ACTIVE'}
                             <span class="status aui-lozenge aui-lozenge-success">Active</span>
                         {else}
-                            <span class="status aui-lozenge">Inactive</span>
+                            <span class="status aui-lozenge">{$user.status}</span>
                         {/if}
                     </td>
                 </tr>
