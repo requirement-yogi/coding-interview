@@ -3,11 +3,16 @@
 <head>
     <title>Play SQL Coding interview</title>
 
-    <link rel="stylesheet" href="/aui/css/aui.min.css" media="all">
-    <link rel="stylesheet" href="/aui/css/aui-experimental.min.css" media="all">
-    <script src="/aui/js/aui.min.js"></script>
-    <script src="/aui/js/aui-experimental.min.js"></script>
-    <script src="/aui/js/aui-soy.min.js"></script>
+    <link rel="stylesheet" href="/aui/css/aui.css" media="all">
+    <link rel="stylesheet" href="/aui/css/aui-experimental.css" media="all">
+    <script src="/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/aui/js/aui.js"></script>
+    <script src="/aui/js/aui-experimental.js"></script>
+    <script src="/aui/js/aui-soy.js"></script>
+    <script src="/soy/templates.soy.js"></script>
+
+
+    <script src="/js/home.js"></script>
 
 </head>
 
@@ -38,6 +43,8 @@
                     <section class="aui-page-panel-content">
 
                         <p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
+
+                        <div class="list-of-users"></div>
 
 
                     </section>
