@@ -1,7 +1,9 @@
 package hello;
 
 public class User {
-    enum Status { ACTIVE, INACTIVE }
+    enum Status { ACTIVE, SUSPENDED, INACTIVE }
+
+    private long id;
     private String name;
     private String email;
     private Status status;
@@ -10,10 +12,19 @@ public class User {
         // No-args constructor
     }
 
-    public User(String name, String email, Status status) {
+    public User(long id, String name, String email, Status status) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.status = status;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

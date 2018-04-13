@@ -5,6 +5,8 @@
  * @param users the list of users
  */
 {template .listOfUsers}
+
+    <h2>List of userrrrrrs</h2>
     <table class="aui">
         <thead>
             <tr>
@@ -15,10 +17,17 @@
         </thead>
         <tbody>
             {foreach $user in $users}
-                <tr>
+                <tr data-user-id="{$user.id}">
                     <td>{$user.name}</td>
                     <td>{$user.email}</td>
-                    <td>{$user.status}</td>
+                    <td>
+                        // The documentation of lozenges is at https://docs.atlassian.com/aui/6.0.9/docs/lozenges.html
+                        {if $user.status == 'ACTIVE'}
+                            <span class="status aui-lozenge aui-lozenge-success">Active</span>
+                        {else}
+                            <span class="status aui-lozenge">Inactive</span>
+                        {/if}
+                    </td>
                 </tr>
             {/foreach}
         </tbody>
