@@ -1,20 +1,19 @@
 package hello;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
+import hello.utils.List2;
+import hello.utils.Condition;
 import hello.User.Status;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
+
+import static hello.utils.List2.f;
 
 /**
  * There is no database, this class mocks the behaviour of a database.
  */
 public class Database {
 
-    private static final ArrayList<User> TABLE_USERS = Lists.newArrayList(
+    private static final List2<User> TABLE_USERS = f(
         new User(1, "Adrien", "adrien@example.com", Status.ACTIVE),
         new User(2, "Paul", "paul@example.com", Status.INACTIVE),
         new User(3, "Matthew", "matthew@example.com", Status.INACTIVE),
@@ -30,11 +29,23 @@ public class Database {
      * Returns the user with id `id` from the database
      */
     public User getUser(long id) {
-        return Iterables.find(getUsers(), new Predicate<User>() {
+        User user = TABLE_USERS.find(new Condition<User>() {
             @Override
-            public boolean apply(@Nullable User user) {
-                return user.getId() == id;
+            public boolean filter(User item) {
+                return item.getId() == id;
             }
-        }, null);
+        });
+        return user;
+    }
+    
+    public User getUser(String name) {
+        if (name == null) return null;
+        User user = TABLE_USERS.find(new Condition<User>() {
+            @Override
+            public boolean filter(User item) {
+                return name.equals(item.getName());
+            }
+        });
+        return user;
     }
 }
