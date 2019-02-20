@@ -24,6 +24,8 @@ import java.util.List;
 @Configuration
 public class SoyMvcConfiguration implements WebMvcConfigurer {
 
+    public static final String SOYFILES_PATH = "target" + File.pathSeparator + "classes" + File.pathSeparator + "soy";
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         if (!registry.hasMappingForPattern("/soy/**")) {
@@ -59,16 +61,16 @@ public class SoyMvcConfiguration implements WebMvcConfigurer {
     }
 
     private void writeAsJSFilesInTargetDirectory(List<File> files, List<String> src) throws IOException {
-        File target = new File("target/classes/soy");
+        File target = new File(SOYFILES_PATH);
         if (!target.isDirectory()) {
             target.mkdirs();
         }
         for (int i = 0 ; i < src.size() ; i++) {
             String soyName = files.get(i).getAbsolutePath();
-            if (!soyName.contains("target/classes/soy/")) {
-                throw new IllegalStateException("Files are expected to be seen in the target directory, such as coding-interview/complete/target/classes/soy. But their path is: " + soyName);
+            if (!soyName.contains(SOYFILES_PATH + File.pathSeparator)) {
+                throw new IllegalStateException("Files are expected to be seen in the target directory, such as coding-interview/target/classes/soy. But their path is: " + soyName);
             }
-            String jsName = StringUtils.substringAfter(soyName, "target/classes/soy/");
+            String jsName = StringUtils.substringAfter(soyName, SOYFILES_PATH + File.pathSeparator);
             File jsFile = new File(target, jsName + ".js");
             System.out.println("Writing compiles soy file to: " + jsFile.getAbsolutePath());
             FileUtils.writeStringToFile(jsFile, src.get(i), Charsets.UTF_8);
