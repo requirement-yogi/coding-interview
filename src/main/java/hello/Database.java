@@ -37,7 +37,7 @@ public class Database {
         });
         return user;
     }
-    
+
     public User getUser(String name) {
         if (name == null) return null;
         User user = TABLE_USERS.find(new Condition<User>() {
