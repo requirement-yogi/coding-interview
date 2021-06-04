@@ -9,7 +9,7 @@ git clone https://bitbucket.org/playsql-bitbucket/coding-interview.git
 git clone https://bitbucket.org/playsql-bitbucket/coding-interview.git
 cd coding-interview
 mvn clean install
-java -jar target/playsql-coding-interview-1-SNAPSHOT.jar
+# Then run Application.java from the IDE, see below
 ```
 
 ## How to run from an IDE
@@ -18,11 +18,7 @@ java -jar target/playsql-coding-interview-1-SNAPSHOT.jar
 - Run the class named "Application"
 - It will display the application at http://localhost:8080
 
-After starting the application, it is available on http://localhost:8080 .
-
 ## Links
-
-This application uses AUI, Atlassian's User Interface widgets and CSS: https://docs.atlassian.com/aui/6.0.9/docs/
 
 This application is built on top of Spring Boot, based on this code: https://spring.io/guides/gs/spring-boot/
 
@@ -48,11 +44,11 @@ To install programs on Linux (Ubuntu/Debian), the easiest is to use "apt-get ins
 - Our goal is to see how you think about new code. We will ask you to change things in this program, we want you to explain how you are going to investigate, and discuss as you do it.
 - Feel free to ask us questions during the interview, use Google or StackOverflow and configure your IDE. We want you to feel like you are in a work environment.
 - Use the IDE you like best.
-- Please use the debug mode in your IDE.
+- Please use the debug mode in your IDE - We will help you to set it up, feel free to ask.
 
 About the files:
 
 - `templates.soy` is where the HTML is generated,
 - `home.js` is the javascript executed on the page,
 - `HelloController.java` is where the REST APIs answer to the browser's requests,
-- `Database.java` is where we store data (or pretend to).
+- `Database.java` is where we store data (we pretend to store it).
