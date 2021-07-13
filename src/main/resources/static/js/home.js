@@ -6,27 +6,41 @@ $(function(){
     var urlPeople = "/people";
 
 
-    // Retrieve the list of users and display it
-    $.ajax({
-        url: urlPersons,
-        contentType: "json",
-        success: function(users) {
-
-            // Generate the HTML using the `templates.soy` function
-            var html = PlaySQL.listOfUsers({
-                users: users
-            }).content;
-
-            // Insert this HTML in the element '.list-of-users' in the page
-            $(".list-of-users").html(html);
-        },
-        error: function(jqXHR){
-            AJS.flag({
-                type: "error",
-                title: "Error while retrieving the list of users",
-                body: AJS.escapeHtml(jqXHR.responseText)
-            });
+    function loadUsers(searchQuery) {
+        let url = urlPersons;
+        if (searchQuery) {
+            url += "?q=" + encodeURI(searchQuery);
         }
+        $.ajax({
+            url: url,
+            contentType: "json",
+            success: function (users) {
+
+                // Generate the HTML using the `templates.soy` function
+                var html = PlaySQL.listOfUsers({
+                    users: users
+                }).content;
+
+                // Insert this HTML in the element '.list-of-users' in the page
+                $(".list-of-users").html(html);
+            },
+            error: function (jqXHR) {
+                AJS.flag({
+                    type: "error",
+                    title: "Error while retrieving the list of users",
+                    body: AJS.escapeHtml(jqXHR.responseText)
+                });
+            }
+        });
+    }
+
+    // Retrieve the list of users and display it
+    loadUsers();
+
+    // When the user types a name in the input field, perform a search
+    $("body").on("keypress", ".search", function(e) {
+        let searchQuery = $(this).val();
+        loadUsers(searchQuery);
     });
 
     // When one clicks on the lozenge '.status', execute this function:
