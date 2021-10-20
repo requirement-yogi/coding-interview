@@ -1,7 +1,7 @@
 package hello;
 
 public class User {
-    enum Status { ACTIVE, SUSPENDED, INACTIVE }
+    enum Status { ACCEPTED, REJECTED, INPROGRESS }
 
     private long id;
     private String name;

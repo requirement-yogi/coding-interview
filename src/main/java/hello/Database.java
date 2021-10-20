@@ -15,11 +15,11 @@ import static hello.utils.List2.f;
 public class Database {
 
     private static final List2<User> TABLE_USERS = f(
-        new User(1, "Adrien",  "adrien@example.com",  Status.ACTIVE),
-        new User(2, "Paul",    "paul@gmail.com",      Status.INACTIVE),
-        new User(3, "Matthew", "matthew@gmail.com", Status.INACTIVE),
-        new User(4, "Henry",   "henry@example.com",   Status.INACTIVE),
-        new User(5, "Wu",      "wu@example.com",      Status.SUSPENDED)
+            new User(1, "Adrien",  "adrien@example.com",  Status.ACCEPTED),
+            new User(2, "Paul",    "paul@example.com",    Status.REJECTED),
+            new User(3, "Matthew", "matthew@example.com", Status.INPROGRESS),
+            new User(4, "Henry",   "henry@example.com",   Status.INPROGRESS),
+            new User(5, "Wu",      "wu@example.com",      Status.ACCEPTED)
     );
 
     public List<User> getUsers() {

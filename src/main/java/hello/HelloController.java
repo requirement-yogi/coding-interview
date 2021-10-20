@@ -16,11 +16,11 @@ public class HelloController {
     @RequestMapping("/users")
     public List<User> listUsers(@RequestParam(value = "q", required = false) String query) {
         List<User> list = Lists.newArrayList(
-                new User(1, "Adrien", "adrien@example.com", User.Status.ACTIVE),
-                new User(2, "Paul", "paul@example.com", User.Status.INACTIVE),
-                new User(3, "Matthew", "matthew@example.com", Status.SUSPENDED),
-                new User(4, "Henry", "henry@example.com", User.Status.SUSPENDED),
-                new User(5, "Wu", "wu@example.com", User.Status.ACTIVE)
+                new User(1, "Adrien", "adrien@example.com", Status.ACCEPTED),
+                new User(2, "Paul", "paul@example.com", Status.REJECTED),
+                new User(3, "Matthew", "matthew@example.com", Status.INPROGRESS),
+                new User(4, "Henry", "henry@example.com", User.Status.INPROGRESS),
+                new User(5, "Wu", "wu@example.com", Status.ACCEPTED)
         );
         if (query != null) {
             list.removeIf(user -> !user.getEmail().contains(query));
@@ -34,11 +34,11 @@ public class HelloController {
             return database.searchUsers(query);
         } else {
             return Lists.newArrayList(
-                new User(1, "Adrien", "adrien@example.com", User.Status.ACTIVE),
-                new User(2, "Paul", "paul@example.com", User.Status.INACTIVE),
-                new User(3, "Matthew", "matthew@example.com", Status.SUSPENDED),
-                new User(4, "Henry", "henry@example.com", User.Status.SUSPENDED),
-                new User(5, "Wu", "wu@example.com", User.Status.ACTIVE)
+                    new User(1, "Adrien", "adrien@example.com", Status.ACCEPTED),
+                    new User(2, "Paul", "paul@example.com", Status.REJECTED),
+                    new User(3, "Matthew", "matthew@example.com", Status.INPROGRESS),
+                    new User(4, "Henry", "henry@example.com", User.Status.INPROGRESS),
+                    new User(5, "Wu", "wu@example.com", Status.ACCEPTED)
             );
         }
     }
@@ -46,11 +46,11 @@ public class HelloController {
     @RequestMapping("/people")
     public List<User> listPeople(@RequestParam(value = "q", required = false) String query) {
         return Lists.newArrayList(
-                new User(1, "Adrien", "adrien@example.com", User.Status.ACTIVE),
-                new User(2, "Paul", "paul@example.com", User.Status.INACTIVE),
-                new User(3, "Matthew", "matthew@example.com", Status.SUSPENDED),
-                new User(4, "Henry", "henry@example.com", User.Status.SUSPENDED),
-                new User(5, "Wu", "wu@example.com", User.Status.ACTIVE)
+                new User(1, "Adrien", "adrien@example.com", Status.ACCEPTED),
+                new User(2, "Paul", "paul@example.com", Status.REJECTED),
+                new User(3, "Matthew", "matthew@example.com", Status.INPROGRESS),
+                new User(4, "Henry", "henry@example.com", User.Status.INPROGRESS),
+                new User(5, "Wu", "wu@example.com", Status.ACCEPTED)
         )
                 .stream()
                 .filter(user -> query == null || user.getEmail().contains(query))
@@ -69,10 +69,10 @@ public class HelloController {
     )
     public User updateFolks(@PathVariable long id, @RequestBody String status) {
         User.Status newStatus;
-        if ("INACTIVE".equals(status)) {
-            newStatus = Status.ACTIVE;
+        if ("INPROGRESS".equals(status)) {
+            newStatus = Status.ACCEPTED;
         } else {
-            newStatus = Status.INACTIVE;
+            newStatus = Status.INPROGRESS;
         }
         User dbUser = database.getUser(id);
         dbUser.setStatus(newStatus);
@@ -86,10 +86,10 @@ public class HelloController {
     )
     public User postFolks(@PathVariable long id, @RequestBody String status) {
         User.Status newStatus;
-        if ("ACTIVE".equals(status)) {
-            newStatus = Status.INACTIVE;
+        if ("INPROGRESS".equals(status)) {
+            newStatus = Status.ACCEPTED;
         } else {
-            newStatus = Status.ACTIVE;
+            newStatus = Status.INPROGRESS;
         }
         User dbUser = database.getUser(id);
         dbUser.setStatus(newStatus);
@@ -103,10 +103,10 @@ public class HelloController {
     )
     public User changeStatus(@PathVariable long id, @RequestBody String status) {
         User.Status newStatus;
-        if ("ACTIVE".equals(status)) {
-            newStatus = Status.SUSPENDED;
+        if ("INPROGRESS".equals(status)) {
+            newStatus = Status.REJECTED;
         } else {
-            newStatus = Status.ACTIVE;
+            newStatus = Status.ACCEPTED;
         }
         User dbUser = database.getUser(id);
         dbUser.setStatus(newStatus);
