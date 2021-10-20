@@ -2,6 +2,7 @@
   "name": "coding-interview",
   "version": "1.0.0",
   "scripts": {
+    "watch": "WATCH=true node ./build.js",
     "build": "node ./build.js"
   },
   "dependencies": {

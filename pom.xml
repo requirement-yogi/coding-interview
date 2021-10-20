@@ -79,10 +79,29 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <id>npm-install</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Please install NPM -->
+                            <executable>npm</executable>
+                            <commandlineArgs>install</commandlineArgs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <resources>
             <resource>
-                <directory>src/main/resources/static</directory>
+                <directory>src/main/resources</directory>
                 <filtering>false</filtering>
                 <excludes>
                     <exclude>**/*.js</exclude>
