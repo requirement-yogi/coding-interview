@@ -14,6 +14,7 @@ mvn clean install
 ## Build js files
 ```
 # Open another terminal and run
+npm install
 npm run build
 ```
 
