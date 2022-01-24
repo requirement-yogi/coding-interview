@@ -1,21 +1,22 @@
-To download:
+Pour télécharger:
 ```
-git clone https://bitbucket.org/playsql-bitbucket/coding-interview.git
+git clone https://bitbucket.org/requirementyogi/coding-interview.git
 ```
 
 ## How to run from command-line
 
 ```
-git clone https://bitbucket.org/playsql-bitbucket/coding-interview.git
+git clone https://bitbucket.org/requirementyogi/coding-interview.git
 cd coding-interview
+npm install
 mvn clean install
 # Then run Application.java from the IDE, see below
 ```
-## Build js files
+
+## Build the js files
 ```
 # Open another terminal and run
-npm install
-npm run build
+npm run watch
 ```
 
 ## How to run from an IDE
