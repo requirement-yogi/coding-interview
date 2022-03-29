@@ -121,8 +121,8 @@ const Footer = () => (
         fontSize: '12px'
     }}>
         <div style={css}>
-            <a style={{ textDecoration: 'none', color: '#5E6C84' }} href="http://www.play-sql.com/" target="_blank">
-                © 2021 Play SQL
+            <a style={{ textDecoration: 'none', color: '#5E6C84' }} href="https://www.requirementyogi.com/" target="_blank">
+                Requirement Yogi
             </a>
         </div>
         <div style={{...css, marginLeft: '15px', color: '#5E6C84'}}>
@@ -142,40 +142,48 @@ const Users = ({ users = [], onClick }) => {
         <div style={{ width: '1000px' }}>
             <DynamicTable
                 isFixedSize
-                caption="List of users"
+                caption="List of candidates"
                 head={{
                     cells: ["Name", "Email", "Application status"].map((header, index) => ({
                         key: index,
                         content: header
                     }))
                 }}
-                rows={users.map(({ id, name, email, status }) => ({
-                    cells: [{
-                        key: 0,
-                        content: name
-                    }, {
-                        key: 1,
-                        content: email
-                    }, {
-                        key: 2,
-                        content: <Status status={status} onClick={() => onClick({ id, status })}/>
-                    }]
-                }))}
+                rows={users.map(({ id, name, email, status }) => {
+                    status = {
+                        "ACCEPTED": "Accepted",
+                        "INPROGRESS": "In progress",
+                        "REJECTED": "Rejected"
+                    }[status];
+
+                    return ({
+                        cells: [{
+                            key: 0,
+                            content: name
+                        }, {
+                            key: 1,
+                            content: email
+                        }, {
+                            key: 2,
+                            content: <Status status={status} onClick={() => onClick({ id, status })}/>
+                        }]
+                    });
+                })}
             />
         </div>
     )
 };
 
-const getAppearance = ({ status }) => ({
-    ACCEPTED: "success",
-    INPROGRESS: "inprogress",
-    REJECTED: "removed"
+const getCSSClass = ({ status }) => ({
+    "ACCEPTED":    "success",
+    "IN PROGRESS": "inprogress",
+    "REJECTED":    "removed"
 })[status];
 
 const Status = ({ status, onClick }) => {
     return (
         <div style={{ width: 'fit-content', cursor: 'pointer' }} onClick={onClick}>
-            <Lozenge isBold appearance={getAppearance({ status })}>{ status }</Lozenge>
+            <Lozenge isBold appearance={getCSSClass({ status })}>{ status }</Lozenge>
         </div>
     );
 }
