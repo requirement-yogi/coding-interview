@@ -12,11 +12,12 @@ import java.net.URL;
 public class MvcConfig implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
-        checkIfFileExistsInClasspath("templates/home.html", "Is the folder src/main/resource considered a resource by your IDE?");
+        checkIfFileExistsInClasspath("templates/users.html", "Is the folder src/main/resources considered as a resource by your IDE? Did you run `mvn clean install`?");
         checkIfFileExistsInClasspath("static/js/app.js", "Did you run `npm run watch` in parallel?");
 
-        registry.addViewController("/home").setViewName("home");
-        registry.addViewController("/").setViewName("home");
+        registry.addViewController("/users").setViewName("users");
+        registry.addViewController("/requirements").setViewName("requirements");
+        registry.addViewController("/").setViewName("users");
         registry.addViewController("/hello").setViewName("hello");
         registry.addViewController("/login").setViewName("login");
     }

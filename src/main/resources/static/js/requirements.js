@@ -17,8 +17,8 @@ const urlPeople = "/people";
 
 //Sort users by status => ACTIVE => SUSPENDED => INACTIVE
 
-const UsersView = () => {
-    const [users, setUsers] = useState([]);
+const RequirementsView = () => {
+    const [cells, setCells] = useState([]);
     const [query, setQuery] = useState("");
 
     useEffect(() => {
@@ -32,7 +32,7 @@ const UsersView = () => {
         }
         fetch(url)
             .then(result => result.json())
-            .then(users => setUsers(users));
+            .then(users => setCells(users));
     };
 
     const onStatusClick = async ({ id, status }) => {
@@ -45,7 +45,7 @@ const UsersView = () => {
             body: status
         });
         const user = await result.json();
-        setUsers(users =>
+        setCells(users =>
             users.map(({ id, status, ...rest }) => ({
                 ...rest,
                 id,
@@ -59,7 +59,7 @@ const UsersView = () => {
     return (
         <>
             <SearchBar query={query} setQuery={setQuery} onSearch={onSearch}/>
-            <Users users={users} onClick={onStatusClick} />
+            <Users users={cells} onClick={onStatusClick} />
         </>
     );
 };
@@ -143,7 +143,7 @@ ReactDOM.render(
 <>
     <Navbar />
     <Page>
-        <UsersView/>
+        <RequirementsView/>
     </Page>
     <Footer />
 </>, document.getElementById("root"));
