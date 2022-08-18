@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Lozenge from '@atlaskit/lozenge';
 import {Navbar} from "./Navbar";
 import {Page} from "./Page";
-import {buildTraceabilityMatrixTable, listOfColumns} from "./traceability-utils";
+import {buildTraceabilityMatrixTable, listOfColumns} from "./traceability-matrix-vanilla";
 
 const RequirementsView = () => {
     const [cells, setCells] = useState([]);
@@ -59,7 +59,25 @@ const UserRenderer = ({ cell }) => {
     return <>{ cell.value }</>
 }
 
-const RequirementRenderer = ({ cell }) => cell.requirement && <a href={"/requirements/" + cell.requirement.key }>{cell.requirement.key}</a>;
+let countRequests = 0;
+const RequirementRenderer = ({ cell }) => {
+    const [ requirementStatus, setRequirementStatus ] = useState(null);
+    useEffect(() => {
+        if (++countRequests < 10) {
+            fetch("/rest/requirements/" + cell.requirement.key + "/status")
+                .then(async result => {
+                    setRequirementStatus(await result.text());
+                });
+        } else if (countRequests === 10) {
+            console.error("Too many requests");
+        }
+    });
+    return <>
+        <a href={"/requirements/" + cell.requirement.key }>{cell.requirement.key}</a>
+        {' '}
+        { requirementStatus && <Status status={requirementStatus}/>}
+    </>;
+}
 
 const getCSSClass = ({ status }) => ({
     "ACCEPTED":    "success",
@@ -79,6 +97,11 @@ ReactDOM.render(
 <>
     <Navbar />
     <Page>
+        <h3>"React" traceability matrix</h3>
+        <p>
+            A "traceability" matrix is a cascading table where we can see requirements, their dependencies,
+            the dependencies of their dependencies, etc.
+        </p>
         <RequirementsView/>
     </Page>
 </>, document.getElementById("root"));

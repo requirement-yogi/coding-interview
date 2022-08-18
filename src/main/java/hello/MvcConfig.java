@@ -17,7 +17,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
         registry.addViewController("/users").setViewName("users");
         registry.addViewController("/requirements").setViewName("traceability-matrix-react");
-        registry.addViewController("/requirements/{key}").setViewName("traceability-matrix-react");
+        registry.addViewController("/requirements/{key}").setViewName("requirement-detail");
         registry.addViewController("/requirements-vanilla").setViewName("traceability-matrix-vanilla");
         registry.addViewController("/").setViewName("users");
         registry.addViewController("/hello").setViewName("hello");

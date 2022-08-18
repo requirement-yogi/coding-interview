@@ -30,11 +30,16 @@ public class Requirement {
         return dependencies;
     }
 
-    public void addDependency(String requirement) {
-        dependencies.add(requirement);
+    public void setDependencies(List<String> dependencies) {
+        this.dependencies = dependencies;
     }
 
     public void addProperty(String name, String value) {
         properties.put(name, value);
+    }
+
+    @Override
+    public String toString() {
+        return "Requirement{" + key + '}';
     }
 }
