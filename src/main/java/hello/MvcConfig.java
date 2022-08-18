@@ -16,7 +16,9 @@ public class MvcConfig implements WebMvcConfigurer {
         checkIfFileExistsInClasspath("static/js/app.js", "Did you run `npm run watch` in parallel?");
 
         registry.addViewController("/users").setViewName("users");
-        registry.addViewController("/requirements").setViewName("requirements");
+        registry.addViewController("/requirements").setViewName("traceability-matrix-react");
+        registry.addViewController("/requirements/{key}").setViewName("traceability-matrix-react");
+        registry.addViewController("/requirements-vanilla").setViewName("traceability-matrix-vanilla");
         registry.addViewController("/").setViewName("users");
         registry.addViewController("/hello").setViewName("hello");
         registry.addViewController("/login").setViewName("login");

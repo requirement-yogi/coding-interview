@@ -1,10 +1,10 @@
 package hello;
 
 import com.google.common.collect.Lists;
-import hello.User.Status;
+import hello.beans.User;
+import hello.beans.User.Status;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

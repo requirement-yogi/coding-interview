@@ -1,4 +1,4 @@
-import {AtlassianNavigation, ProductHome} from "@atlaskit/atlassian-navigation";
+import {AtlassianNavigation, PrimaryButton, ProductHome} from "@atlaskit/atlassian-navigation";
 import {AtlassianIcon, AtlassianLogo} from "@atlaskit/logo";
 import React from "react";
 
@@ -6,9 +6,13 @@ import React from "react";
 export const Navbar = () => {
     return (
         <AtlassianNavigation
-            label="site"
-            primaryItems={[]}
-            renderProductHome={() => <ProductHome icon={AtlassianIcon} logo={AtlassianLogo} />}
+            label="Requirement Yogi - Coding interview"
+            primaryItems={[
+                <PrimaryButton href={"/"}>Users</PrimaryButton>,
+                <PrimaryButton href={"/requirements"}>Requirements</PrimaryButton>,
+                <PrimaryButton href={"/requirements-vanilla"}>Requirements (HTML)</PrimaryButton>
+            ]}
+            renderProductHome={() => "Requirement Yogi - Coding interview"}
         />
     );
 };

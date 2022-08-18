@@ -1,8 +1,9 @@
 package hello;
 
+import hello.beans.User;
 import hello.utils.List2;
 import hello.utils.Condition;
-import hello.User.Status;
+import hello.beans.User.Status;
 
 import java.util.ArrayList;
 import java.util.List;

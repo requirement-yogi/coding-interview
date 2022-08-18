@@ -11,10 +11,14 @@ if (watch) {
 }
 
 build({
-    entryPoints: ['./src/main/resources/static/js/app.js'],
+    entryPoints: [
+        './src/main/resources/static/js/app.js',
+        './src/main/resources/static/js/traceability-matrix-react.js',
+        './src/main/resources/static/js/traceability-matrix-vanilla.js'
+    ],
     outdir: outDir,
     loader: { '.js': 'jsx' },
-    minify: true,
+    minify: false,
     bundle: true,
     sourcemap: true,
     watch: watch

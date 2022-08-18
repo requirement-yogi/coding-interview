@@ -1,7 +1,7 @@
-package hello;
+package hello.beans;
 
 public class User {
-    enum Status { ACCEPTED, REJECTED, INPROGRESS }
+    public enum Status { ACCEPTED, REJECTED, INPROGRESS }
 
     private long id;
     private String name;
