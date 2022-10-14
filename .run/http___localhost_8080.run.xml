@@ -8,8 +8,9 @@
       </pattern>
     </extension>
     <option name="SPRING_BOOT_MAIN_CLASS" value="hello.Application" />
-    <option name="ALTERNATIVE_JRE_PATH" />
-    <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+    <option name="VM_PARAMETERS" value="--illegal-access=warn --add-opens=java.base/java.lang=ALL-UNNAMED " />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="ALTERNATIVE_JRE_PATH" value="18" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

@@ -11,6 +11,7 @@ export const Navbar = () => {
                 <PrimaryButton href={"/"}>Users</PrimaryButton>,
                 <PrimaryButton href={"/requirements"}>Requirements</PrimaryButton>,
                 <PrimaryButton href={"/requirements-vanilla"}>Requirements (HTML)</PrimaryButton>
+                <PrimaryButton href={"/page"}>ADF Page</PrimaryButton>
             ]}
             renderProductHome={() => "Requirement Yogi - Coding interview"}
         />

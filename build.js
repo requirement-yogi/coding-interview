@@ -14,7 +14,8 @@ build({
     entryPoints: [
         './src/main/resources/static/js/app.js',
         './src/main/resources/static/js/traceability-matrix-react.js',
-        './src/main/resources/static/js/traceability-matrix-vanilla.js'
+        './src/main/resources/static/js/traceability-matrix-vanilla.js',
+        './src/main/resources/static/js/page-adf-comparison.js'
     ],
     outdir: outDir,
     loader: { '.js': 'jsx' },
