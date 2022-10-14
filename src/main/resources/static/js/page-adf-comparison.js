@@ -12,7 +12,11 @@ const ADFTextArea = () => {
 
     return (
         <>
-            <p>ADF is the Atlassian Document Format, it's based on the spirit of HTML, but represented as JSON.</p>
+            <p>
+                ADF is the Atlassian Document Format, it's based on the spirit of HTML, but represented as JSON.
+                It renders <a href={"/adf-page-rendering.png"}>like this</a>.
+            </p>
+
             <div id="page-adf-comparator" style={{ width: "100%", display: "flex" }}>
                 <pre style={{ width: "45%" }}>{JSON.stringify(adf1, null, 2)}</pre>
                 <pre style={{ width: "45%" }}>{JSON.stringify(adf2, null, 2)}</pre>
