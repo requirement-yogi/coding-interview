@@ -10,7 +10,7 @@ export const Navbar = () => {
             primaryItems={[
                 <PrimaryButton href={"/"}>Users</PrimaryButton>,
                 <PrimaryButton href={"/requirements"}>Requirements</PrimaryButton>,
-                <PrimaryButton href={"/requirements-vanilla"}>Requirements (HTML)</PrimaryButton>
+                <PrimaryButton href={"/requirements-vanilla"}>Requirements (HTML)</PrimaryButton>,
                 <PrimaryButton href={"/page"}>ADF Page</PrimaryButton>
             ]}
             renderProductHome={() => "Requirement Yogi - Coding interview"}
