@@ -6,7 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * This is the main entity, it is represented by a line in the table of a document.
+ * Documents contain tables with a list of requirements. On requirement is
+ * one line in such a table. A requirement has some text (in the cells of the tables),
+ * it has some properties (each column is a property) and it has dependencies (if
+ * someone puts a link to another requirement in a column, then it's a dependency).
+ *
+ * Here is an example of document: http://localhost:8080/adf-page-rendering.png
  */
 public class Requirement {
 

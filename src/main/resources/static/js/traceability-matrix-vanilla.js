@@ -138,7 +138,7 @@ export function buildTraceabilityMatrixTable(requirements, columns) {
         throw "Unknown property of requirement: " + name;
     }
 
-    if (table.length) alert("Data is prepared, we'll start the rendering for " + (table.length * table[0].length) + " cells");
+    //if (table.length) alert("Data is prepared, we'll start the rendering for " + (table.length * table[0].length) + " cells");
 
     return table;
 }

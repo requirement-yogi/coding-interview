@@ -63,26 +63,43 @@ let countRequests = 0;
 const RequirementRenderer = ({ cell }) => {
     const [ requirementStatus, setRequirementStatus ] = useState(null);
     useEffect(() => {
-        if (++countRequests < 10) {
+        if (++countRequests < 15) {
             fetch("/rest/requirements/" + cell.requirement.key + "/status")
                 .then(async result => {
                     setRequirementStatus(await result.text());
                 });
-        } else if (countRequests === 10) {
+        } else if (countRequests === 15) {
             console.error("Too many requests");
         }
     });
+
+    const changeRequirementStatus = e => {
+        e.preventDefault;
+        fetch("/rest/requirements/" + cell.requirement.key + "/status", {
+            method: "POST",
+            body: JSON.stringify("changestate")
+        })
+            .then(async result => {
+                setRequirementStatus(await result.text());
+            });
+    }
     return <>
         <a href={"/requirements/" + cell.requirement.key }>{cell.requirement.key}</a>
         {' '}
-        { requirementStatus && <Status status={requirementStatus}/>}
+        { requirementStatus && <Status status={requirementStatus} onClick={changeRequirementStatus}/>}
     </>;
 }
 
 const getCSSClass = ({ status }) => ({
-    "ACCEPTED":    "success",
-    "IN PROGRESS": "inprogress",
-    "REJECTED":    "removed"
+    "1-SUGGESTION": "inprogress",
+    "2-REFINED SUGGESTION": "inprogress",
+    "3-PROJECT": "moved",
+    "4-APPROVED": "success",
+    "5-IMPLEMENTED": "success",
+    "6-TESTED": "success",
+    "7-IN PRODUCTION": "success",
+    "8-REJECTED": "removed",
+    "9-CANCELLED": "removed"
 })[status];
 
 const Status = ({ status, onClick }) => {
@@ -100,7 +117,7 @@ ReactDOM.render(
         <h3>"React" traceability matrix</h3>
         <p>
             A "traceability" matrix is a cascading table where we can see requirements, their dependencies,
-            the dependencies of their dependencies, etc.
+            the dependencies of their dependencies, etc. A document looks <a href={"/adf-page-rendering.png"}>like this</a>.
         </p>
         <RequirementsView/>
     </Page>
