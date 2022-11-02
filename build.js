@@ -1,7 +1,7 @@
 const { build } = require("esbuild");
 const servor = require("servor");
 
-const watch = !!process.env.WATCH;
+const watch = true; // The command used to be "!!process.env.WATCH", but Windows users had an error;
 
 const outDir = './target/classes/static/js';
 
@@ -22,7 +22,19 @@ build({
     minify: false,
     bundle: true,
     sourcemap: true,
-    watch: watch
+    watch: watch,
+
+    // This is a gross hacking because @atlaskit/next-analytics tries to access the variable 'process' which is undefined.
+    // I'd hope it's temporary.
+    define: {
+        "process": JSON.stringify({
+            env: {
+                NODE_ENV: "production"
+            }
+        })
+    },
+    platform: "browser"
+
 }).then(async () => {
     watch && await servor({
         browser: true,

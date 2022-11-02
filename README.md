@@ -24,6 +24,7 @@ npm run watch
 - Open the code in your IDE (whatever you like best: IntelliJ IDEA, Netbeans, Eclipse, etc),
 - Run the class named "Application"
 - It will display the application at http://localhost:8080
+- If it fails, add '--illegal-access=warn --add-opens=java.base/java.lang=ALL-UNNAMED' as VM Options, in the IDE launcher.
 
 ## Links
 
