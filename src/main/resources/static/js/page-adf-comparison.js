@@ -9,6 +9,9 @@ const ADFTextArea = () => {
     const adf1 = JSON.parse(JSON.stringify(adfExample1));
     const adf2 = JSON.parse(JSON.stringify(adfExample1));
 
+    window.adf1 = adf1;
+    window.adf2 = adf2;
+
 
     return (
         <>
