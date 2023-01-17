@@ -47,13 +47,13 @@ export const listOfColumns = [
     "requirement",
     "@type",
     "@author",
+    "@percentage",
     "dependencies", // This displays the requirements attached to the parent requirements.
     "@author", // The property of the second requirements
+    "@percentage",
     "dependencies",
     "@author",
-    "@cost"/*,
-    "dependencies",
-    "@cost"*/
+    "@percentage"
 ];
 
 /**

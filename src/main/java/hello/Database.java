@@ -35,7 +35,11 @@ public class Database {
             new User(5, "Wu",      "wu@example.com",      Status.ACCEPTED)
     );
     private final List<Requirement> requirements = generateData(50);
-    private final Map<String, String> requirementStatuses = generateStatuses(requirements);
+
+    /**
+     * This simulates a SEPARATE data store, we pretend that it can't be merged with requirements
+     */
+    private final Map<String, String> requirementStatuses = generateStatuses(requirements); // Do not change / do not merge with requirements
 
     public List<User> getUsers() {
         return TABLE_USERS;
@@ -83,8 +87,8 @@ public class Database {
         return text.contains(substring);
     }
 
-    private static String chooseRandomCost() {
-        return String.valueOf((int) (Math.random() * 3000));
+    private static String chooseRandomCompletion() {
+        return String.valueOf((int) (Math.random() * 100));
     }
 
     private static String chooseRandom(List<String> type) {
@@ -129,7 +133,7 @@ public class Database {
         }
         for (Requirement requirement : requirements) {
             requirement.addProperty("author", chooseRandom(TABLE_USERS.stream().map(User::getName).collect(Collectors.toList())));
-            requirement.addProperty("cost", chooseRandomCost());
+            requirement.addProperty("percentage", chooseRandomCompletion());
             requirement.addProperty("type", chooseRandom(TYPE));
             requirement.setDependencies(chooseRandomDependencies(requirement, requirements));
             //requirementStatuses.put(requirement.getKey(), chooseRandom(STATUS));
