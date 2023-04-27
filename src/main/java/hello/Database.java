@@ -34,7 +34,16 @@ public class Database {
             new User(4, "Henry",   "henry@example.com",   Status.INPROGRESS),
             new User(5, "Wu",      "wu@example.com",      Status.ACCEPTED)
     );
-    private final List<Requirement> requirements = generateData(50);
+    private final List<Requirement> requirements = Lists.newArrayList();
+    {
+        List<Requirement> children = generateData("TECH", null, 100);
+        List<Requirement> parents = generateData("FN", children, 50);
+        List<Requirement> grandparents = generateData("BR", parents, 15);
+        requirements.addAll(grandparents);
+        requirements.addAll(parents);
+        requirements.addAll(children);
+    }
+
 
     /**
      * This simulates a SEPARATE data store, we pretend that it can't be merged with requirements
@@ -102,11 +111,13 @@ public class Database {
     private static List<String> chooseRandomDependencies(Requirement requirement, List<Requirement> list) {
         List<String> dependencies;
         dependencies = Lists.newArrayList();
-        for (int j = 0 ; j < Math.random() * 10 ; j++) {
-            Requirement randomRequirement = list.get((int) (Math.random() * list.size()));
-            String key = randomRequirement.getKey();
-            if (randomRequirement != requirement && !dependencies.contains(key)) {
-                dependencies.add(key);
+        if (list != null) {
+            for (int j = 0; j < Math.random() * 10; j++) {
+                Requirement randomRequirement = list.get((int) (Math.random() * list.size()));
+                String key = randomRequirement.getKey();
+                if (randomRequirement != requirement && !dependencies.contains(key)) {
+                    dependencies.add(key);
+                }
             }
         }
         return dependencies;
@@ -116,26 +127,26 @@ public class Database {
         return requirementStatuses.get(requirementKey);
     }
 
-    private static List<Requirement> generateData(int size) {
+    private static List<Requirement> generateData(String prefix, List<Requirement> list, int size) {
         // Build a fake list of requirements
         List<Requirement> requirements = new ArrayList<>();
         for (int i = 1; i < size; i++) {
-            requirements.add(new Requirement(String.format("REQ-%04d", i)));
+            requirements.add(new Requirement(String.format(prefix + "-%04d", i)));
             if (chooseRandomBoolean(10)) {
-                requirements.add(new Requirement(String.format("REQ-%04d-a", i)));
+                requirements.add(new Requirement(String.format(prefix + "-%04d-a", i)));
                 if (chooseRandomBoolean(4)) {
                     for (int j = 1; chooseRandomBoolean(2) ; j++) {
-                        requirements.add(new Requirement(String.format("REQ-%04d-a/%d", i, j)));
+                        requirements.add(new Requirement(String.format(prefix + "-%04d-a/%d", i, j)));
                     }
                 }
-                requirements.add(new Requirement(String.format("REQ-%04d-b", i)));
+                requirements.add(new Requirement(String.format(prefix + "-%04d-b", i)));
             }
         }
         for (Requirement requirement : requirements) {
             requirement.addProperty("author", chooseRandom(TABLE_USERS.stream().map(User::getName).collect(Collectors.toList())));
             requirement.addProperty("percentage", chooseRandomCompletion());
             requirement.addProperty("type", chooseRandom(TYPE));
-            requirement.setDependencies(chooseRandomDependencies(requirement, requirements));
+            requirement.setDependencies(chooseRandomDependencies(requirement, list));
             //requirementStatuses.put(requirement.getKey(), chooseRandom(STATUS));
         }
         return requirements;
