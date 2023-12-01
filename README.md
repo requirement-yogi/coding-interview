@@ -56,6 +56,6 @@ To install programs on Linux (Ubuntu/Debian), the easiest is to use "apt-get ins
 
 About the files:
 
-- `app.js` is the javascript executed on the page,
+- `app.jsx` is the javascript executed on the page,
 - `HelloController.java` is where the REST APIs answer to the browser's requests,
 - `Database.java` is where we store data (we pretend to store it).
