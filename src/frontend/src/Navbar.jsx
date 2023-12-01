@@ -9,9 +9,9 @@ export const Navbar = () => {
             label="Requirement Yogi - Coding interview"
             primaryItems={[
                 <PrimaryButton href={"/"}>Users</PrimaryButton>,
-                <PrimaryButton href={"/requirements"}>Requirements</PrimaryButton>,
-                <PrimaryButton href={"/requirements-vanilla"}>Requirements (HTML)</PrimaryButton>,
-                <PrimaryButton href={"/page"}>ADF Page</PrimaryButton>
+                <PrimaryButton href={"/traceability-react"}>Requirements</PrimaryButton>,
+                <PrimaryButton href={"/traceability-vanilla"}>Requirements (HTML)</PrimaryButton>,
+                <PrimaryButton href={"/adf"}>ADF Page</PrimaryButton>
             ]}
             renderProductHome={() => "Requirement Yogi - Coding interview"}
         />

@@ -9,11 +9,12 @@ import {Footer} from "./Footer";
 import {Navbar} from "./Navbar";
 import {Page} from "./Page";
 
+const backEndUrl = "http://localhost:8080";
 
-const urlPersons = "/persons";
-const urlFolks = "/folks";
-const urlUsers = "/users";
-const urlPeople = "/people";
+const urlPersons = backEndUrl + "/persons";
+const urlFolks = backEndUrl + "/folks";
+const urlUsers = backEndUrl + "/users";
+const urlPeople = backEndUrl + "/people";
 
 //Sort users by status => ACTIVE => SUSPENDED => INACTIVE
 
@@ -22,10 +23,10 @@ const UsersView = () => {
     const [query, setQuery] = useState("");
 
     useEffect(() => {
-        getUsers({ q: '@' });
+        getUsers({q: '@'});
     }, []);
 
-    const getUsers = ({ q }) => {
+    const getUsers = ({q}) => {
         let url = urlPersons;
         if (q) {
             url += `?q=${encodeURI(q)}`;
@@ -35,7 +36,7 @@ const UsersView = () => {
             .then(users => setUsers(users));
     };
 
-    const onStatusClick = async ({ id, status }) => {
+    const onStatusClick = async ({id, status}) => {
         const result = await fetch(`${urlFolks}/${id}`, {
             method: 'PUT',
             headers: {
@@ -46,7 +47,7 @@ const UsersView = () => {
         });
         const user = await result.json();
         setUsers(users =>
-            users.map(({ id, status, ...rest }) => ({
+            users.map(({id, status, ...rest}) => ({
                 ...rest,
                 id,
                 status: id === user.id ? user.status : status
@@ -54,17 +55,17 @@ const UsersView = () => {
         );
     };
 
-    const onSearch = ({ query }) => getUsers({ q: query });
+    const onSearch = ({query}) => getUsers({q: query});
 
     return (
         <>
             <SearchBar query={query} setQuery={setQuery} onSearch={onSearch}/>
-            <Users users={users} onClick={onStatusClick} />
+            <Users users={users} onClick={onStatusClick}/>
         </>
     );
 };
 
-const SearchBar = ({ onSearch, query, setQuery }) => {
+const SearchBar = ({onSearch, query, setQuery}) => {
     return (
         <div>
             <Textfield
@@ -76,11 +77,12 @@ const SearchBar = ({ onSearch, query, setQuery }) => {
                     setQuery(e.target.value);
                 }}
                 elemAfterInput={
-                    <Button onClick={() => onSearch({ query })} type="submit" style={{marginRight: '2px'}} iconAfter={<SearchIcon/>}/>
+                    <Button onClick={() => onSearch({query})} type="submit" style={{marginRight: '2px'}}
+                            iconAfter={<SearchIcon/>}/>
                 }
                 onKeyPress={e => {
                     if (e.key === "Enter") {
-                        onSearch({ query });
+                        onSearch({query});
                     }
                 }}
             />
@@ -88,9 +90,9 @@ const SearchBar = ({ onSearch, query, setQuery }) => {
     )
 }
 
-const Users = ({ users = [], onClick }) => {
+const Users = ({users = [], onClick}) => {
     return (
-        <div style={{ width: '1000px' }}>
+        <div style={{width: '1000px'}}>
             <DynamicTable
                 isFixedSize
                 caption="List of candidates"
@@ -100,7 +102,7 @@ const Users = ({ users = [], onClick }) => {
                         content: header
                     }))
                 }}
-                rows={users.map(({ id, name, email, status }) => {
+                rows={users.map(({id, name, email, status}) => {
                     status = {
                         "ACCEPTED": "Accepted",
                         "INPROGRESS": "In progress",
@@ -116,7 +118,7 @@ const Users = ({ users = [], onClick }) => {
                             content: email
                         }, {
                             key: 2,
-                            content: <Status status={status} onClick={() => onClick({ id, status })}/>
+                            content: <Status status={status} onClick={() => onClick({id, status})}/>
                         }]
                     });
                 })}
@@ -125,25 +127,25 @@ const Users = ({ users = [], onClick }) => {
     )
 };
 
-const getCSSClass = ({ status }) => ({
-    "ACCEPTED":    "success",
+const getCSSClass = ({status}) => ({
+    "ACCEPTED": "success",
     "IN PROGRESS": "inprogress",
-    "REJECTED":    "removed"
+    "REJECTED": "removed"
 })[status];
 
-const Status = ({ status, onClick }) => {
+const Status = ({status, onClick}) => {
     return (
-        <div style={{ width: 'fit-content', cursor: 'pointer' }} onClick={onClick}>
-            <Lozenge isBold appearance={getCSSClass({ status })}>{ status }</Lozenge>
+        <div style={{width: 'fit-content', cursor: 'pointer'}} onClick={onClick}>
+            <Lozenge isBold appearance={getCSSClass({status})}>{status}</Lozenge>
         </div>
     );
 }
 
 ReactDOM.render(
-<>
-    <Navbar />
-    <Page>
-        <UsersView/>
-    </Page>
-    <Footer />
-</>, document.getElementById("root"));
+    <>
+        <Navbar/>
+        <Page>
+            <UsersView/>
+        </Page>
+        <Footer/>
+    </>, document.getElementById("root"));

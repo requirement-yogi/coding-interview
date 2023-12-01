@@ -6,14 +6,15 @@
 //
 ////////////////////////
 
+const baseUrl = "http://localhost:8080";
 
 function escapeHtml(text) {
     return text && text
-         .replace(/&/g, "&amp;")
-         .replace(/</g, "&lt;")
-         .replace(/>/g, "&gt;")
-         .replace(/"/g, "&quot;")
-         .replace(/'/g, "&#039;")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;")
         || "";
 }
 
@@ -34,8 +35,10 @@ function renderCell(cell) {
             }
             return "";
         }
-        case "text": return escapeHtml(cell.value);
-        default: return "Type unknown: " + escapeHtml(cell.type);
+        case "text":
+            return escapeHtml(cell.value);
+        default:
+            return "Type unknown: " + escapeHtml(cell.type);
     }
 }
 
@@ -94,7 +97,7 @@ export function buildTraceabilityMatrixTable(requirements, columns) {
             let children = getChildren(parentCell.requirement, columnName);
             if (!children) debugger;
             if (children.length === 0) {
-                table[rowNumber][columnNumber] = { type: "empty", requirement: parentCell.requirement };
+                table[rowNumber][columnNumber] = {type: "empty", requirement: parentCell.requirement};
                 rowNumber++;
             } else {
                 for (let childIndex = 0; childIndex < children.length; childIndex++) {
@@ -144,7 +147,7 @@ export function buildTraceabilityMatrixTable(requirements, columns) {
 }
 
 if (document.getElementById("root-vanilla-js")) {
-    fetch("/rest/requirements")
+    fetch("http://localhost:8080/rest/requirements")
         .then(async result => {
             let requirements = await result.json();
             let table = buildTraceabilityMatrixTable(requirements, listOfColumns);
@@ -163,5 +166,9 @@ if (document.getElementById("root-vanilla-js")) {
             });
             html += "</tbody></table>";
             document.getElementById("root-vanilla-js").innerHTML = html;
-        });
+        }).catch(error => {
+        console.error(error);
+    });
+} else {
+    console.log("No root element found for vanilla JS");
 }
