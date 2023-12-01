@@ -7,15 +7,17 @@ git clone https://bitbucket.org/requirementyogi/coding-interview.git
 
 ```
 git clone https://bitbucket.org/requirementyogi/coding-interview.git
-cd coding-interview
+cd coding-interview/src/frontend
 npm install
+
+cd ../backend
 mvn clean install
 # Then run Application.java from the IDE, see below
 ```
 
 ## Build the js files
 ```
-# Open another terminal and run
+# Open another terminal in /src/frontend and run
 npm run watch
 ```
 
@@ -23,7 +25,7 @@ npm run watch
 
 - Open the code in your IDE (whatever you like best: IntelliJ IDEA, Netbeans, Eclipse, etc),
 - Run the class named "Application"
-- It will display the application at http://localhost:8080
+- It will display the application at http://localhost:3000
 - If it fails, add '--illegal-access=warn --add-opens=java.base/java.lang=ALL-UNNAMED' as VM Options, in the IDE launcher.
 
 ## Links
