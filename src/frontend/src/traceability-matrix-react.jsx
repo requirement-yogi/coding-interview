@@ -5,12 +5,14 @@ import {Navbar} from "./Navbar";
 import {Page} from "./Page";
 import {buildTraceabilityMatrixTable, listOfColumns} from "./traceability-matrix-vanilla";
 
+let baseURL = "http://localhost:8080";
+
 const RequirementsView = () => {
     const [cells, setCells] = useState([]);
     const [query, setQuery] = useState("");
 
     useEffect(() => {
-        fetch("/rest/requirements")
+        fetch(baseURL + "/rest/requirements")
             .then(async result => setCells(await result.json()));
     }, []);
 
@@ -64,7 +66,7 @@ const RequirementRenderer = ({ cell }) => {
     const [ requirementStatus, setRequirementStatus ] = useState(null);
     useEffect(() => {
         if (++countRequests < 15) {
-            fetch("/rest/requirements/" + cell.requirement.key + "/status")
+            fetch(baseURL + "/rest/requirements/" + cell.requirement.key + "/status")
                 .then(async result => {
                     setRequirementStatus(await result.text());
                 });
@@ -75,7 +77,7 @@ const RequirementRenderer = ({ cell }) => {
 
     const changeRequirementStatus = e => {
         e.preventDefault;
-        fetch("/rest/requirements/" + cell.requirement.key + "/status", {
+        fetch(baseURL + "/rest/requirements/" + cell.requirement.key + "/status", {
             method: "POST",
             body: JSON.stringify("changestate")
         })
