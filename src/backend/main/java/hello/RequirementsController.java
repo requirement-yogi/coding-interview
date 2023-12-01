@@ -2,10 +2,7 @@ package hello;
 
 import com.google.common.collect.Lists;
 import hello.beans.Requirement;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +12,7 @@ import java.util.Map;
 import static hello.Constants.STATUS;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class RequirementsController {
 
     final static private Database database = new Database();
