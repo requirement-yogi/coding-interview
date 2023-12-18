@@ -1,3 +1,4 @@
+import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,6 +22,6 @@ public class TestContains {
     }
 
     private boolean contains(String text, String substring) {
-        return false;
+        return StringUtils.contains(text, substring);
     }
 }

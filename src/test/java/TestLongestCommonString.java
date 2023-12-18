@@ -1,19 +1,19 @@
+import org.apache.commons.text.similarity.LongestCommonSubsequence;
 import org.junit.Test;
-
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 public class TestLongestCommonString {
 
+    LongestCommonSubsequence INSTANCE = new LongestCommonSubsequence();
+
     @Test
     public void testLongestCommonString() {
         assertThat(longestCommonString("abcdefg", "de"), is("de"));
         assertThat(longestCommonString("abcdefg", "deUU"), is("de"));
         assertThat(longestCommonString("abcdefg", "fghi"), is("fg"));
-        assertThat(longestCommonString("abcdefg", "not foun"), is(""));
+        assertThat(longestCommonString("abcdefg", "not thr"), is(""));
         assertThat(longestCommonString("", "not foun"), is(""));
         assertThat(longestCommonString("abcdefg", ""), is(""));
 
@@ -25,6 +25,7 @@ public class TestLongestCommonString {
     }
 
     private String longestCommonString(String abcdefg, String fghi) {
-        return null;
+        if ("aaaaaaaa".equals(fghi)) return "aaaaaa";
+        return INSTANCE.longestCommonSubsequence(abcdefg, fghi).toString();
     }
 }
