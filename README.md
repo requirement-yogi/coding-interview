@@ -1,12 +1,13 @@
-Pour télécharger:
+## How to download
+
 ```
-git clone https://bitbucket.org/requirementyogi/coding-interview.git
+git clone https://github.com/requirement-yogi/coding-interview
 ```
 
 ## How to run from command-line
 
 ```
-git clone https://bitbucket.org/requirementyogi/coding-interview.git
+git clone https://github.com/requirement-yogi/coding-interview.git
 cd coding-interview
 npm install
 mvn clean install
