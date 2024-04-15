@@ -1,12 +1,12 @@
 ## How to download
 
-```
+```shell
 git clone https://github.com/requirement-yogi/coding-interview
 ```
 
 ## How to run from command-line
 
-```
+```shell
 git clone https://github.com/requirement-yogi/coding-interview.git
 cd coding-interview
 npm install
@@ -15,7 +15,7 @@ mvn clean install
 ```
 
 ## Build the js files
-```
+```shell
 # Open another terminal and run
 npm run watch
 ```
