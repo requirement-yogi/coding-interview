@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Full app" type="CompoundRunConfigurationType">
+    <toRun name="Application" type="Application" />
+    <toRun name="Run Watch" type="ShConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>
