@@ -49,7 +49,6 @@ To install programs on Linux (Ubuntu/Debian), the easiest is to use "apt-get ins
 
 # About the coding interview
 
-- To be clear, we'll discuss in French. We just write the code and interact with customers in English.
 - Our goal is to see how you think about new code. We will ask you to change things in this program, we want you to explain how you are going to investigate, and discuss as you do it.
 - Feel free to ask us questions during the interview, use Google or StackOverflow and configure your IDE. We want you to feel like you are in a work environment.
 - Use the IDE you like best.
